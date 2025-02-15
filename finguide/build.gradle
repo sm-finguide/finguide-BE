@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    //스프링 부트 플러그인
+    id 'org.springframework.boot' version '3.2.0'
+    //스프링 의존성 자동관리
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'me.finguide'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //웹관련 기능 제공
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //테스트 기능 제공
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
