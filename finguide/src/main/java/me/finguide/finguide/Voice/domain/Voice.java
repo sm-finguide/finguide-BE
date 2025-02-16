@@ -1,0 +1,41 @@
+package me.finguide.finguide.Voice.domain;
+
+import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Voice {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+
+    @Column(name = "voice_id", updatable = false)
+    private Long voice_id;
+
+    @Column(name = "file_path", nullable = false)
+    private String file_path;
+
+    @Column(name = "score", nullable = false)
+    private Long score;
+
+    @CreatedDate
+    @Column(name = "uploaded_at", nullable = false)
+    private LocalDateTime uploaded_at = LocalDateTime.now();
+
+    @Builder
+    public Voice(String file_path, Long score, LocalDateTime uploaded_at){
+        this.file_path = file_path;
+        this.score = score;
+        this.uploaded_at = uploaded_at;
+    }
+
+
+}
