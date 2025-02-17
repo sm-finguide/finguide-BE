@@ -33,5 +33,10 @@ public class Guardian {
         this.phone_number = phone_number;
     }
 
+    public void update(String guardian_name, String phone_number){
+        this.guardian_name = guardian_name;
+        this.phone_number = phone_number;
+    }
+
 
 }

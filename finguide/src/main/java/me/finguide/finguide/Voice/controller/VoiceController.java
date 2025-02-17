@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VoiceController {
     private final VoiceService voiceService;
 
-    @PostMapping("/api/voice")
+    @PostMapping("/api/voice/upload")
     public ResponseEntity<Voice> addVoice(@RequestBody AddVoiceRequest request){
         Voice savedVoice = voiceService.save(request);
 
