@@ -25,7 +25,7 @@ public class Voice {
     private String file_path;
 
     @Column(name = "score", nullable = false)
-    private Long score;
+    private Double score;
 
     @CreatedDate
     @Column(name = "uploaded_at", nullable = false)
@@ -35,7 +35,7 @@ public class Voice {
 //    private List<Notice> notices = new ArrayList<>();
 
     @Builder
-    public Voice(String file_path, Long score, LocalDateTime uploaded_at){
+    public Voice(String file_path, Double score, LocalDateTime uploaded_at){
         this.file_path = file_path;
         this.score = score;
         this.uploaded_at = uploaded_at;
