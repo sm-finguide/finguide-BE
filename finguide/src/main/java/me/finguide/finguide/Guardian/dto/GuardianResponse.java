@@ -2,6 +2,7 @@ package me.finguide.finguide.Guardian.dto;
 
 import lombok.Getter;
 import me.finguide.finguide.Guardian.domain.Guardian;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @Getter
 public class GuardianResponse {

@@ -32,7 +32,10 @@ public class GuardianService {
         Guardian guardian = guardianRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("not found: " + id));
 
-        guardian.update(request.getGuardian_name(), request.getPhone_number());
+        String newGuardianName = request.getGuardian_name().orElse(guardian.getGuardian_name());
+        String newPhoneNumber = request.getPhone_number().orElse(guardian.getPhone_number());
+
+        guardian.update(newGuardianName, newPhoneNumber);
 
         return guardian;
     }

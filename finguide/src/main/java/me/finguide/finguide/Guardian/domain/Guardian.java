@@ -3,6 +3,7 @@ package me.finguide.finguide.Guardian.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import me.finguide.finguide.Notice.domain.Notice;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Guardian {
 //    private List<Notice> notices = new ArrayList<>();
 
     @Builder
-    public Guardian(String guardian_name, String phone_number){
+    public Guardian(String guardian_name,String phone_number){
         this.guardian_name = guardian_name;
         this.phone_number = phone_number;
     }

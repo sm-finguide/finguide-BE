@@ -43,7 +43,7 @@ public class GuardianController {
                 .build();
     }
 
-    @PutMapping("/api/guardian/modification/{id}")
+    @PatchMapping("/api/guardian/modification/{id}")
     public ResponseEntity<Guardian> updateGuardian(@PathVariable("id") long id, @RequestBody UpdateGuardianRequest request){
         Guardian updateGuardian = guardianService.update(id, request);
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.finguide.finguide.Guardian.domain.Guardian;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 @NoArgsConstructor
 @AllArgsConstructor
