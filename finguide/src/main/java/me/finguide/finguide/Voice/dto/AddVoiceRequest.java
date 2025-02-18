@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 public class AddVoiceRequest {
     private String file_path;
-    private Long score;
+    private Double score;
 
     public Voice toEntity(){
         return Voice.builder()
