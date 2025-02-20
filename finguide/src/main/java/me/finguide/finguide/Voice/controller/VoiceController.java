@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class VoiceController {
     private final VoiceService voiceService;
-
+    //보이스 피싱 분석 요청 추가 예정 (람다)
     @PostMapping("/api/voice/upload")
     public ResponseEntity<Voice> addVoice(@RequestBody AddVoiceRequest request){
         Voice savedVoice = voiceService.save(request);
@@ -28,6 +28,7 @@ public class VoiceController {
                 .body(savedVoice);
     }
 
+    //모든 음성 파일 조회
     @GetMapping("/api/voice")
     public ResponseEntity<List<VoiceResponse>> findAllVoice(){
         List<VoiceResponse> voiceResponses = voiceService.findAll()
@@ -37,5 +38,6 @@ public class VoiceController {
         return ResponseEntity.ok()
                 .body(voiceResponses);
     }
+    
 
 }
