@@ -12,12 +12,10 @@ import java.time.LocalDateTime;
 @Getter
 public class AddVoiceRequest {
     private String file_path;
-    private Double score;
 
     public Voice toEntity(){
         return Voice.builder()
                 .file_path(file_path)
-                .score(score)
                 .uploaded_at(LocalDateTime.now())
                 .build();
     }

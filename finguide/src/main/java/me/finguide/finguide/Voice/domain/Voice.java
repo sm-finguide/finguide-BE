@@ -24,20 +24,17 @@ public class Voice {
     @Column(name = "file_path", nullable = false)
     private String file_path;
 
-    @Column(name = "score", nullable = false)
+    @Column(name = "score", nullable = true)
     private Double score;
 
     @CreatedDate
     @Column(name = "uploaded_at", nullable = false)
     private LocalDateTime uploaded_at = LocalDateTime.now();
 
-//    @OneToMany(mappedBy = "voice", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Notice> notices = new ArrayList<>();
-
     @Builder
     public Voice(String file_path, Double score, LocalDateTime uploaded_at){
         this.file_path = file_path;
-        this.score = score;
+        this.score = null;
         this.uploaded_at = uploaded_at;
     }
 
