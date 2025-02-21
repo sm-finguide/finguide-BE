@@ -22,7 +22,7 @@ jobs:
         distribution: 'corretto'
 
     - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@0a8628dd83b5a50f095508dce01e17aa7f4c5a5a
+      uses: gradle/actions/setup-gradle@v3.2.0
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
