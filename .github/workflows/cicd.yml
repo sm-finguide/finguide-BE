@@ -25,11 +25,10 @@ jobs:
       uses: gradle/actions/setup-gradle@v3.2.0
 
     - name: Permission for gradlew
-      run: chmod +x ./unibond/gradlew
+      run: chmod +x ./finguide/gradlew
       shell: bash
 
     - name: Build with Gradle
-      # run: /home/runner/work/UniBond-server/UniBond-server/unibond/gradlew build
       uses: gradle/actions/setup-gradle@v3.2.0
       with:
         arguments: build
