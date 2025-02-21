@@ -25,7 +25,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v3.2.0
 
     - name: Build with Gradle Wrapper
-      run: .finguide/gradlew build
+      run: ./finguide/gradlew build
 
     # Docker build & push 
     - name: Docker build & push to Docker hub
