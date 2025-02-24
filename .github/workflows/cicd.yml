@@ -40,7 +40,18 @@ jobs:
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker build -t ${{ secrets.DOCKER_USERNAME }}/finguide:latest -f finguide/Dockerfile finguide/
         docker push ${{ secrets.DOCKER_USERNAME }}/finguide:latest
-
+    - name: get GitHub IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+ 
+# Configure AWS Credentials (6) - AWS 접근 권한 취득(IAM)
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1a
+        
     # EC2 배포
     - name: Docker image pull & Deploy to EC2
       uses: appleboy/ssh-action@master
@@ -48,10 +59,14 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ubuntu
         key: ${{ secrets.EC2_PRIVATE_KEY }}
-
+        port: ${{ secrets.EC2_SSH_PORT }}
+        timeout: 60s
         script: |
-          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/finguide:latest
-          sudo docker stop $(sudo docker ps -a -q)
-          sudo docker rm $(sudo docker ps -aq) || true
-          sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/finguide:latest
-          sudo docker image prune -a -f
+          sudo docker stop dnd2
+          sudo docker rm dnd2
+          sudo docker rmi rlaehddnd0422/dnd
+          sudo docker pull rlaehddnd0422/dnd
+          sudo docker run -it -d -p 8080:8080 --name dnd2 rlaehddnd0422/dnd
+    - name: Remove IP FROM security group
+      run: |
+        aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32     
