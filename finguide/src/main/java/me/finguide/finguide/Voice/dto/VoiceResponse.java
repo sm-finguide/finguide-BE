@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 public class VoiceResponse {
     private final Long voice_id;
-    private final MultipartFile file_path;
+    private final String file_path;
     private final Double score;
     private final LocalDateTime uploaded_at;
 
