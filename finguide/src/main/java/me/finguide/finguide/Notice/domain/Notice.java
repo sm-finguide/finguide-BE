@@ -5,6 +5,7 @@ import lombok.*;
 import me.finguide.finguide.Guardian.domain.Guardian;
 import me.finguide.finguide.Voice.domain.Voice;
 
+@Table(name = "notice")
 @Entity
 @Getter
 @Setter
