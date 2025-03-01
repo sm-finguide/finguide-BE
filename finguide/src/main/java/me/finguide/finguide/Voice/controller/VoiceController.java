@@ -8,10 +8,8 @@ import me.finguide.finguide.Voice.dto.VoiceResponse;
 import me.finguide.finguide.Voice.service.VoiceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,7 +19,8 @@ public class VoiceController {
     private final VoiceService voiceService;
     //보이스 피싱 분석 요청 추가 예정 (람다)
     @PostMapping("/api/voice/upload")
-    public ResponseEntity<Voice> addVoice(@RequestBody AddVoiceRequest request){
+    public ResponseEntity<Voice> addVoice(@RequestParam("file") MultipartFile file){
+        AddVoiceRequest request = new AddVoiceRequest(file);
         Voice savedVoice = voiceService.save(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)

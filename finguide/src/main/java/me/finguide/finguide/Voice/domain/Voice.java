@@ -5,6 +5,7 @@ import lombok.*;
 import me.finguide.finguide.Notice.domain.Notice;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

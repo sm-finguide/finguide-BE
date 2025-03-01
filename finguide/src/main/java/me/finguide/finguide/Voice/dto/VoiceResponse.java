@@ -3,13 +3,14 @@ package me.finguide.finguide.Voice.dto;
 import lombok.Getter;
 import me.finguide.finguide.Guardian.domain.Guardian;
 import me.finguide.finguide.Voice.domain.Voice;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
 @Getter
 public class VoiceResponse {
     private final Long voice_id;
-    private final String file_path;
+    private final MultipartFile file_path;
     private final Double score;
     private final LocalDateTime uploaded_at;
 
