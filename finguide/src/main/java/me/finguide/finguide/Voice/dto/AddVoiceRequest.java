@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.finguide.finguide.Voice.domain.Voice;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -12,11 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class AddVoiceRequest {
-    private MultipartFile file_path;
+    private String file_path;
 
-    public Voice toEntity(String fileUrl){
+    public Voice toEntity(){
         return Voice.builder()
-                .file_path(fileUrl)
+                .file_path(file_path)
                 .uploaded_at(LocalDateTime.now())
                 .build();
     }

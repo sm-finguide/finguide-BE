@@ -8,7 +8,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "guardian")
 @Entity
 @Getter
 @Setter

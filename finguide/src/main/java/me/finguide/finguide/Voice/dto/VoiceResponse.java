@@ -3,7 +3,6 @@ package me.finguide.finguide.Voice.dto;
 import lombok.Getter;
 import me.finguide.finguide.Guardian.domain.Guardian;
 import me.finguide.finguide.Voice.domain.Voice;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
