@@ -29,7 +29,7 @@ public class S3ClientConfig {
 
         return S3Client.builder()
                 .region(Region.of(region))
-                .credentialsProvider(DefaultCredentialsProvider.create())
+                .credentialsProvider(StaticCredentialsProvider.create(credentials)) 
                 .build();
     }
 }
