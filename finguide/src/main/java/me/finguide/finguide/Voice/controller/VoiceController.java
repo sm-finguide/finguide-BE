@@ -45,7 +45,7 @@ public class VoiceController {
         return ResponseEntity.ok()
                 .body(voiceResponses);
     }
-    @PostMapping("/api/prediction")
+    @PostMapping("/api/predictions")
     public ResponseEntity<Map<String, Object>> receivePrediction(@RequestBody Map<String, Object> payload) {
         String prediction = (String) payload.get("prediction");
 
