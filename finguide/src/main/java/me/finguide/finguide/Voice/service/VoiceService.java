@@ -1,14 +1,15 @@
 package me.finguide.finguide.Voice.service;
 
 import lombok.RequiredArgsConstructor;
-import me.finguide.finguide.Guardian.domain.Guardian;
 import me.finguide.finguide.Voice.domain.Voice;
 import me.finguide.finguide.Voice.dto.AddVoiceRequest;
 import me.finguide.finguide.Voice.repository.VoiceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -27,4 +28,31 @@ public class VoiceService {
     public List<Voice> findAll(){
         return voiceRepository.findAll();
     }
+
+    @Transactional
+    public void updatePrediction(Long voiceId, String transcript, String prediction) {
+        Voice voice = voiceRepository.findById(voiceId)
+                .orElseThrow(() -> new IllegalArgumentException("Voice not found with ID: " + voiceId));
+
+        // 예측 결과(score)를 Double 변환하여 저장
+        Double score = prediction.equalsIgnoreCase("보이스피싱") ? 1.0 : 0.0;
+
+        voice.setScore(score);
+        voiceRepository.save(voice);
+    }
+
+    @Transactional
+    public Voice updateLatestPrediction(String prediction) {
+        Optional<Voice> latestVoice = voiceRepository.findTopByOrderByUploadedAtDesc();
+
+        if (latestVoice.isPresent()) {
+            Voice voice = latestVoice.get();
+            Double score = prediction.equalsIgnoreCase("보이스피싱") ? 1.0 : 0.0;
+
+            voice.setScore(score);
+            return voiceRepository.save(voice);
+        }
+        return null; // 업데이트할 파일이 없는 경우
+    }
+
 }

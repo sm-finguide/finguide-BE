@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,6 +34,7 @@ public class VoiceController {
 //                .body(savedVoice);
         }
     }
+
     //모든 음성 파일 조회
     @GetMapping("/api/voice")
     public ResponseEntity<List<VoiceResponse>> findAllVoice(){
@@ -42,6 +45,28 @@ public class VoiceController {
         return ResponseEntity.ok()
                 .body(voiceResponses);
     }
-    
+    @PostMapping("/api/prediction")
+    public ResponseEntity<Map<String, Object>> receivePrediction(@RequestBody Map<String, Object> payload) {
+        String prediction = (String) payload.get("prediction");
+
+        System.out.println("Received Prediction:");
+        System.out.println("Prediction: " + prediction);
+
+        // 최근 업로드된 음성 파일의 score 업데이트
+        Voice updatedVoice = voiceService.updateLatestPrediction(prediction);
+
+        if (updatedVoice == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("status", "error", "message", "No voice file found to update"));
+        }
+
+        // 응답 JSON 생성
+        Map<String, Object> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("prediction", prediction);
+        response.put("updated_voice", updatedVoice.getFile_path());
+
+        return ResponseEntity.ok(response);
+    }
 
 }
