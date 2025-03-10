@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,6 +34,7 @@ public class VoiceController {
 //                .body(savedVoice);
         }
     }
+
     //모든 음성 파일 조회
     @GetMapping("/api/voice")
     public ResponseEntity<List<VoiceResponse>> findAllVoice(){
@@ -42,6 +45,5 @@ public class VoiceController {
         return ResponseEntity.ok()
                 .body(voiceResponses);
     }
-    
 
 }

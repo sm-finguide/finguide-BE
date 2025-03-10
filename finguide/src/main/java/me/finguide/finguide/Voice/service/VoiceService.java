@@ -1,14 +1,15 @@
 package me.finguide.finguide.Voice.service;
 
 import lombok.RequiredArgsConstructor;
-import me.finguide.finguide.Guardian.domain.Guardian;
 import me.finguide.finguide.Voice.domain.Voice;
 import me.finguide.finguide.Voice.dto.AddVoiceRequest;
 import me.finguide.finguide.Voice.repository.VoiceRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -27,4 +28,6 @@ public class VoiceService {
     public List<Voice> findAll(){
         return voiceRepository.findAll();
     }
+
+
 }
